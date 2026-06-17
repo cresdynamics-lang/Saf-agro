@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #1a5c2a;
+  --color-secondary: #8c8c8c;
+  --color-black: #1c1c1c;
+  --color-white: #ffffff;
+  --color-accent: #2e7d32;
+  --color-light-grey: #f5f5f5;
+  --color-near-black: #111111;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  --tracking-wide: 0.12em;
+  --tracking-wider: 0.18em;
+}
