@@ -19,15 +19,15 @@ const serviceLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-black text-white">
+    <footer className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mb-12 border-b border-white/10 pb-12">
           <Image
-            src="/logo.png"
+            src="/logo-transparent.png"
             alt="SAF Agro Products"
-            width={180}
-            height={54}
-            className="mb-4 h-12 w-auto brightness-0 invert"
+            width={320}
+            height={96}
+            className="mb-6 h-20 sm:h-24 w-auto brightness-0 invert"
           />
           <p className="text-sm tracking-widest text-secondary uppercase">
             Sourcing · Supply · Logistics · Exports

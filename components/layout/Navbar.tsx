@@ -31,34 +31,34 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white shadow-sm border-b-2 border-primary"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/" className="relative z-50 shrink-0">
           <Image
-            src="/logo.png"
+            src="/logo-transparent.png"
             alt="SAF Agro Products"
-            width={160}
-            height={48}
-            className="h-10 w-auto object-contain"
+            width={320}
+            height={96}
+            className={`w-auto object-contain transition-all duration-300 ${
+              scrolled ? "h-10 sm:h-12" : "h-20 sm:h-24"
+            }`}
             priority
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav
+          className={`hidden items-center gap-8 lg:flex mix-blend-difference transition-all duration-300 ${
+            scrolled
+              ? "pointer-events-none -translate-y-4 opacity-0"
+              : "translate-y-0 opacity-100"
+          }`}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium tracking-wide uppercase transition-colors ${
-                scrolled
-                  ? "text-brand-black hover:text-primary"
-                  : "text-white/90 hover:text-white"
-              }`}
+              className="text-sm font-bold tracking-wide uppercase text-white transition-colors hover:text-white/70"
             >
               {link.label}
             </Link>
@@ -76,9 +76,7 @@ export default function Navbar() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden ${
-            menuOpen || scrolled ? "text-brand-black" : "text-white"
-          }`}
+          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden mix-blend-difference text-white"
         >
           <span
             className={`block h-0.5 w-6 bg-current transition-all ${
