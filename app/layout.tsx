@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={`${dmSans.variable} antialiased`}>
         {children}
         <ScrollToTop />
+        <WhatsAppButton />
       </body>
     </html>
   );
