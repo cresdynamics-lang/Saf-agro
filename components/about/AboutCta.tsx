@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
+
 export default function AboutCta() {
   return (
     <section className="relative overflow-hidden bg-[#0A0D10] py-24 lg:py-32 border-t-8 border-[#37F713]">
@@ -36,3 +37,5 @@ export default function AboutCta() {
     </section>
   );
 }
+
+

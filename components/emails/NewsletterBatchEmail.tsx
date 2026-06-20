@@ -21,7 +21,7 @@ export default function NewsletterBatchEmail({
   return (
     <Html>
       <Head />
-      <Preview>{subscribers.length} New Newsletter Subscribers</Preview>
+      <Preview>{`${subscribers.length} New Newsletter Subscribers`}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>New Newsletter Subscribers</Heading>

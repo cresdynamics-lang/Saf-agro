@@ -89,11 +89,11 @@ export default function StatsBar() {
               <div className={`font-black tracking-tight ${stat.textSizeClass} ${stat.colorClass} whitespace-nowrap`}>
                 {stat.isRange ? (
                   <>
-                    <CountUp end={stat.end1} duration={2.5} enableScrollSpy scrollSpyOnce />KG–<CountUp end={stat.end2} duration={2.5} enableScrollSpy scrollSpyOnce />KG
+                    <CountUp end={stat.end1 || 0} duration={2.5} enableScrollSpy scrollSpyOnce />KG–<CountUp end={stat.end2 || 0} duration={2.5} enableScrollSpy scrollSpyOnce />KG
                   </>
                 ) : (
                   <CountUp 
-                    end={stat.end} 
+                    end={stat.end || 0} 
                     duration={2.5} 
                     suffix={stat.suffix} 
                     separator={stat.separator || ""} 

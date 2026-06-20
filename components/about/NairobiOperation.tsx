@@ -38,7 +38,7 @@ export default function NairobiOperation() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-left" delay={0.2}>
+          <ScrollReveal animation="slide-left" delay={0.2}>
             <div className="flex flex-col justify-center">
               <h2 className="mb-6 text-4xl font-black lowercase tracking-tight text-[#111] sm:text-5xl">
                 Our Base of <span className="text-[#326949]">Operations</span>

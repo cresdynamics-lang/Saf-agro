@@ -7,7 +7,7 @@ import {
   WHATSAPP_URL,
 } from "@/lib/grade-specs";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { Mail, Phone, MessageCircle, ArrowRight } from "lucide-react";
 
 type OrderFormProps = {
   productName: string;

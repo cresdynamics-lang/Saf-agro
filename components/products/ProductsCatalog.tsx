@@ -115,7 +115,7 @@ export default function ProductsCatalog() {
                   }`}
                   aria-label="List View"
                 >
-                  <ListViewIcon size={20} variant={viewMode === "list" ? "solid" : "stroke"} />
+                  <ListViewIcon size={20} />
                 </button>
                 <button
                   type="button"
@@ -127,7 +127,7 @@ export default function ProductsCatalog() {
                   }`}
                   aria-label="Grid View"
                 >
-                  <GridViewIcon size={20} variant={viewMode === "grid" ? "solid" : "stroke"} />
+                  <GridViewIcon size={20} />
                 </button>
               </div>
             </div>
