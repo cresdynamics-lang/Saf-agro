@@ -48,7 +48,7 @@ export default function WhatSetsUsApart() {
             <ScrollReveal key={feature.title} animation="fade-up" delay={index * 0.1}>
               <article className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-[24px] border border-gray-100 bg-[#FAF9F6] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#37F713]/30 hover:shadow-xl sm:flex-row sm:items-start lg:p-10">
                 <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(55,247,19,0.4)]">
-                  <feature.icon size={36} variant="solid" className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
+                  <feature.icon size={36} className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
                 </div>
                 <div>
                   <h3 className="mb-3 text-xl font-black uppercase tracking-widest text-[#111]">

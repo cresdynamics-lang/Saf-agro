@@ -56,7 +56,7 @@ export default function ProductCard({ product, activeGrades, viewMode = "list" }
 
         <div className={`grid gap-5 mb-8 ${isGrid ? "grid-cols-1" : "sm:grid-cols-2"}`}>
           <div className="flex items-start gap-3">
-            <Award01Icon className="h-5 w-5 shrink-0 text-[#326949]" variant="solid" />
+            <Award01Icon className="h-5 w-5 shrink-0 text-[#326949]" />
             <div>
               <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Grades</dt>
               <dd className="text-sm font-bold text-[#111]">{product.grades.join(" | ")}</dd>
@@ -64,7 +64,7 @@ export default function ProductCard({ product, activeGrades, viewMode = "list" }
           </div>
           
           <div className="flex items-start gap-3">
-            <Location01Icon className="h-5 w-5 shrink-0 text-[#326949]" variant="solid" />
+            <Location01Icon className="h-5 w-5 shrink-0 text-[#326949]" />
             <div>
               <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Origins</dt>
               <dd className="text-sm font-bold text-[#111]">{formatOrigins(product.origins)}</dd>
@@ -72,7 +72,7 @@ export default function ProductCard({ product, activeGrades, viewMode = "list" }
           </div>
 
           <div className="flex items-start gap-3">
-            <OrganicFoodIcon className="h-5 w-5 shrink-0 text-[#326949]" variant="solid" />
+            <OrganicFoodIcon className="h-5 w-5 shrink-0 text-[#326949]" />
             <div>
               <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Packing</dt>
               <dd className="text-sm font-bold text-[#111]">{formatPacking(product.packing)}</dd>
@@ -80,7 +80,7 @@ export default function ProductCard({ product, activeGrades, viewMode = "list" }
           </div>
 
           <div className="flex items-start gap-3">
-            <DeliveryTruck02Icon className="h-5 w-5 shrink-0 text-[#326949]" variant="solid" />
+            <DeliveryTruck02Icon className="h-5 w-5 shrink-0 text-[#326949]" />
             <div>
               <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Supply</dt>
               <dd className="text-sm font-bold text-[#111]">{product.supply}</dd>

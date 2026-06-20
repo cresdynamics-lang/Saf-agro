@@ -121,11 +121,11 @@ const steps = [
 function getSubsectionIcon(type: string) {
   switch (type) {
     case "truck":
-      return <DeliveryTruck02Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" variant="solid" />;
+      return <DeliveryTruck02Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" />;
     case "warehouse":
-      return <Home01Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" variant="solid" />;
+      return <Home01Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" />;
     case "plane":
-      return <Airplane01Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" variant="solid" />;
+      return <Airplane01Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" />;
     case "arrow":
     default:
       return <ArrowRight01Icon className="shrink-0 text-[#326949] h-5 w-5 mt-0.5" />;
@@ -151,7 +151,7 @@ export default function ProcessSteps() {
               <article className="group relative bg-[#FAF9F6] rounded-[20px] p-8 md:p-12 shadow-sm border border-gray-100 transition-all hover:shadow-xl hover:border-[#37F713]/50">
                 {/* Neon Huge Icon Marker */}
                 <div className="absolute -left-[74px] md:-left-[106px] top-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#111] text-[#37F713] shadow-[0_0_20px_rgba(55,247,19,0.4)] border-2 border-[#37F713]/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(55,247,19,0.7)]">
-                  <step.Icon className="h-10 w-10 drop-shadow-[0_0_10px_rgba(55,247,19,0.8)]" variant="solid" />
+                  <step.Icon className="h-10 w-10 drop-shadow-[0_0_10px_rgba(55,247,19,0.8)]" />
                 </div>
 
                 <h3 className="mb-2 text-2xl md:text-3xl font-black text-[#111] uppercase tracking-tight">
@@ -175,7 +175,7 @@ export default function ProcessSteps() {
                         key={bullet}
                         className="flex items-start gap-3 text-sm font-medium text-gray-700"
                       >
-                        <CheckmarkBadge01Icon className="shrink-0 text-[#37F713] drop-shadow-[0_0_8px_rgba(55,247,19,0.6)] h-5 w-5 mt-0.5" variant="solid" />
+                        <CheckmarkBadge01Icon className="shrink-0 text-[#37F713] drop-shadow-[0_0_8px_rgba(55,247,19,0.6)] h-5 w-5 mt-0.5" />
                         {bullet}
                       </li>
                     ))}

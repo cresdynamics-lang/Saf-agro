@@ -15,13 +15,13 @@ type DocumentsAvailableProps = {
 
 function getDocIcon(docName: string) {
   const name = docName.toLowerCase();
-  if (name.includes("origin")) return <Globe02Icon size={24} variant="solid" />;
-  if (name.includes("phyto")) return <Leaf02Icon size={24} variant="solid" />;
-  if (name.includes("invoice")) return <Invoice01Icon size={24} variant="solid" />;
-  if (name.includes("packing")) return <ClipboardIcon size={24} variant="solid" />;
-  if (name.includes("inspection")) return <CheckmarkBadge01Icon size={24} variant="solid" />;
-  if (name.includes("lading") || name.includes("export")) return <CargoShipIcon size={24} variant="solid" />;
-  return <File01Icon size={24} variant="solid" />;
+  if (name.includes("origin")) return <Globe02Icon size={24} />;
+  if (name.includes("phyto")) return <Leaf02Icon size={24} />;
+  if (name.includes("invoice")) return <Invoice01Icon size={24} />;
+  if (name.includes("packing")) return <ClipboardIcon size={24} />;
+  if (name.includes("inspection")) return <CheckmarkBadge01Icon size={24} />;
+  if (name.includes("lading") || name.includes("export")) return <CargoShipIcon size={24} />;
+  return <File01Icon size={24} />;
 }
 
 export default function DocumentsAvailable({

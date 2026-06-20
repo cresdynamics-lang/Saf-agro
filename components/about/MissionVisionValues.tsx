@@ -33,7 +33,7 @@ export default function MissionVisionValues() {
                 <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#37F713] opacity-[0.03] blur-[60px] transition-opacity group-hover:opacity-[0.08]"></div>
                 
                 <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#0e2417] text-[#37F713] shadow-[0_0_15px_rgba(55,247,19,0.2)] border border-[#37F713]/20 transition-transform duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(55,247,19,0.4)]">
-                  <pillar.icon size={36} variant="solid" className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
+                  <pillar.icon size={36} className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
                 </div>
                 
                 <h3 className="mb-4 text-xl font-black tracking-widest text-white uppercase">

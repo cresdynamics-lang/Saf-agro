@@ -23,15 +23,15 @@ import { Search01Icon, Alert01Icon, Bug01Icon, PaintBoardIcon } from "hugeicons-
 function getRowIcon(label: string) {
   const l = label.toLowerCase();
   if (l.includes("moisture")) return <Droplets className="h-4 w-4 text-[#37F713]" />;
-  if (l.includes("foreign")) return <Search01Icon className="h-4 w-4 text-[#37F713]" variant="solid" />;
+  if (l.includes("foreign")) return <Search01Icon className="h-4 w-4 text-[#37F713]" />;
   if (l.includes("broken")) return <AlertTriangle className="h-4 w-4 text-[#37F713]" />;
   if (l.includes("aflatoxin")) return <ShieldAlert className="h-4 w-4 text-[#37F713]" />;
-  if (l.includes("colour") || l.includes("color")) return <PaintBoardIcon className="h-4 w-4 text-[#37F713]" variant="solid" />;
+  if (l.includes("colour") || l.includes("color")) return <PaintBoardIcon className="h-4 w-4 text-[#37F713]" />;
   if (l.includes("smell")) return <Wind className="h-4 w-4 text-[#37F713]" />;
-  if (l.includes("insect") || l.includes("bug")) return <Bug01Icon className="h-4 w-4 text-[#37F713]" variant="solid" />;
+  if (l.includes("insect") || l.includes("bug")) return <Bug01Icon className="h-4 w-4 text-[#37F713]" />;
   
   // Default fallback
-  return <CheckmarkBadge01Icon className="h-4 w-4 text-[#37F713]" variant="solid" />;
+  return <CheckmarkBadge01Icon className="h-4 w-4 text-[#37F713]" />;
 }
 
 export function SpecSection({ title, rows, icon: Icon }: SpecSectionProps) {
@@ -39,7 +39,7 @@ export function SpecSection({ title, rows, icon: Icon }: SpecSectionProps) {
     <div className="rounded-[24px] border border-gray-100 bg-white p-8 shadow-sm transition-shadow hover:shadow-lg">
       <div className="mb-6 flex items-center gap-4 border-b border-gray-100 pb-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713] shadow-md">
-          <Icon size={24} variant="solid" />
+          <Icon size={24} />
         </div>
         <h3 className="text-sm font-black tracking-widest text-[#111] uppercase">
           {title}

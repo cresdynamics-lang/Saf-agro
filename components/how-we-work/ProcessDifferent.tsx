@@ -52,7 +52,7 @@ export default function ProcessDifferent() {
               
               {/* Huge Icon */}
               <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#FAF9F6] text-[#326949] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#111] group-hover:text-[#37F713] group-hover:shadow-[0_0_20px_rgba(55,247,19,0.3)]">
-                <item.Icon size={40} variant="solid" />
+                <item.Icon size={40} />
               </div>
 
               <p className="text-base font-bold leading-relaxed text-gray-500 group-hover:text-[#111] transition-colors">

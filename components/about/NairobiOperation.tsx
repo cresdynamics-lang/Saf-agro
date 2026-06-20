@@ -53,7 +53,7 @@ export default function NairobiOperation() {
                   <ScrollReveal key={item} animation="fade-up" delay={i * 0.1}>
                     <li className="flex items-center gap-4 text-base font-bold text-[#111] rounded-xl bg-white p-4 shadow-sm border border-gray-100 transition-all hover:border-[#37F713]/30 hover:shadow-md">
                       <div className="flex shrink-0 items-center justify-center text-[#37F713] drop-shadow-[0_0_8px_rgba(55,247,19,0.4)]">
-                        <CheckmarkBadge01Icon size={24} variant="solid" />
+                        <CheckmarkBadge01Icon size={24} />
                       </div>
                       {item}
                     </li>

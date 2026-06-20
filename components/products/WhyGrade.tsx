@@ -33,7 +33,7 @@ export default function WhyGrade({ spec }: WhyGradeProps) {
               <ScrollReveal key={item.title} animation="fade-up" delay={i * 0.1}>
                 <article className="group relative flex h-full flex-col items-center justify-center rounded-[24px] bg-[#1A1F1B] p-10 text-center shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(55,247,19,0.15)] overflow-hidden border border-[#326949]/20">
                   <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#0e2417] text-[#37F713] shadow-[0_0_15px_rgba(55,247,19,0.2)] border border-[#37F713]/20 transition-transform duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(55,247,19,0.4)]">
-                    <Icon size={36} variant="solid" className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
+                    <Icon size={36} className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
                   </div>
                   
                   <h3 className="mb-4 text-xl font-black tracking-widest text-white uppercase">

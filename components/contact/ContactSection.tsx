@@ -26,7 +26,7 @@ export default function ContactSection({
               <div className="rounded-[32px] border border-gray-100 bg-[#FAF9F6] p-8 shadow-sm h-full flex flex-col">
                 <div className="mb-6 flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713] shadow-md shrink-0">
-                    <Location01Icon size={24} variant="solid" />
+                    <Location01Icon size={24} />
                   </div>
                   <div>
                     <h3 className="text-xl font-black uppercase tracking-widest text-[#111]">

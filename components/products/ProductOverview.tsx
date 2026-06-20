@@ -43,7 +43,7 @@ export default function ProductOverview({
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713] shadow-md">
-                      <OrganicFoodIcon size={24} variant="solid" />
+                      <OrganicFoodIcon size={24} />
                     </div>
                     <h3 className="text-sm font-black uppercase tracking-widest text-[#111]">
                       Specifications
@@ -73,7 +73,7 @@ export default function ProductOverview({
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713] shadow-md">
-                      <DeliveryTruck02Icon size={24} variant="solid" />
+                      <DeliveryTruck02Icon size={24} />
                     </div>
                     <h3 className="text-sm font-black uppercase tracking-widest text-[#111]">
                       Availability
@@ -102,7 +102,7 @@ export default function ProductOverview({
                 <div className="sm:col-span-2">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713] shadow-md">
-                      <Location01Icon size={24} variant="solid" />
+                      <Location01Icon size={24} />
                     </div>
                     <h3 className="text-sm font-black uppercase tracking-widest text-[#111]">
                       Origins & Sourcing

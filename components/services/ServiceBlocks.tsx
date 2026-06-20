@@ -73,7 +73,7 @@ export default function ServiceBlocks() {
                       <div className="absolute bottom-6 left-6 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur-sm border border-gray-100">
                         <div className="flex items-center gap-3">
                           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#111] text-[#37F713]">
-                            <service.icon size={24} variant="solid" />
+                            <service.icon size={24} />
                           </div>
                           <div>
                             <p className="text-xs font-black uppercase tracking-widest text-gray-500">Service {service.num}</p>

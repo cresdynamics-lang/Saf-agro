@@ -28,7 +28,7 @@ export default function ContactInfo() {
       <div className="space-y-10 flex-1">
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(55,247,19,0.4)]">
-            <Location01Icon size={28} variant="solid" />
+            <Location01Icon size={28} />
           </div>
           <div>
             <p className="mb-1 text-sm font-black tracking-widest text-gray-500 uppercase">
@@ -44,7 +44,7 @@ export default function ContactInfo() {
 
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(55,247,19,0.4)]">
-            <CallIcon size={28} variant="solid" />
+            <CallIcon size={28} />
           </div>
           <div>
             <p className="mb-1 text-sm font-black tracking-widest text-gray-500 uppercase">
@@ -61,7 +61,7 @@ export default function ContactInfo() {
 
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(55,247,19,0.4)]">
-            <Mail01Icon size={28} variant="solid" />
+            <Mail01Icon size={28} />
           </div>
           <div>
             <p className="mb-1 text-sm font-black tracking-widest text-gray-500 uppercase">
@@ -78,7 +78,7 @@ export default function ContactInfo() {
 
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#25D366] text-white transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(37,211,102,0.4)]">
-            <WhatsappIcon size={28} variant="solid" />
+            <WhatsappIcon size={28} />
           </div>
           <div>
             <p className="mb-1 text-sm font-black tracking-widest text-gray-500 uppercase">
@@ -97,7 +97,7 @@ export default function ContactInfo() {
 
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(55,247,19,0.4)]">
-            <Clock01Icon size={28} variant="solid" />
+            <Clock01Icon size={28} />
           </div>
           <div>
             <p className="mb-1 text-sm font-black tracking-widest text-gray-500 uppercase">
@@ -116,7 +116,7 @@ export default function ContactInfo() {
 
         <div className="group flex gap-5">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(55,247,19,0.4)]">
-            <GlobalIcon size={28} variant="solid" />
+            <GlobalIcon size={28} />
           </div>
           <div>
             <p className="mb-2 text-sm font-black tracking-widest text-gray-500 uppercase">
