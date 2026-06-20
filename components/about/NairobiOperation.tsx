@@ -15,7 +15,7 @@ export default function NairobiOperation() {
     <section className="bg-[#FAF9F6] py-24 lg:py-32">
       <div className="mx-auto max-w-[90rem] px-6 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          <ScrollReveal animation="fade-right">
+          <ScrollReveal animation="slide-right">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[32px] border-4 border-white shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80"
