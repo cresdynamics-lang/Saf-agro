@@ -7,9 +7,7 @@ import ContactEnquiryEmail from "@/components/emails/ContactEnquiryEmail";
 import NewsletterBatchEmail from "@/components/emails/NewsletterBatchEmail";
 import { PrismaClient } from "@prisma/client";
 
-// MOCK FLAG: Since we don't have a Resend API key or verified domain yet,
-// we will just console.log the submission instead of actually sending via Resend.
-const MOCK_MODE = true;
+const MOCK_MODE = false;
 
 const resend = new Resend(process.env.RESEND_API_KEY || "re_mock_key");
 const prisma = new PrismaClient();
