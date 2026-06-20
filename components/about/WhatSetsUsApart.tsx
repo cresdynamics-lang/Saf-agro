@@ -1,70 +1,65 @@
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import { OrganicFoodIcon, CheckmarkBadge01Icon, GlobalIcon, DeliveryTruck02Icon } from "hugeicons-react";
+
 const features = [
   {
-    icon: (
-      <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-      </svg>
-    ),
+    icon: OrganicFoodIcon,
     title: "Direct Sourcing",
     description:
-      "We work directly with farmers and cooperatives — ensuring quality at the source.",
+      "We work directly with farmers and cooperatives — ensuring quality at the source without middleman markups.",
   },
   {
-    icon: (
-      <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-      </svg>
-    ),
+    icon: CheckmarkBadge01Icon,
     title: "Quality Grading",
     description:
-      "Every product is independently graded and documented before it leaves our facility.",
+      "Every product is independently graded, tested for moisture and aflatoxins, and documented before it leaves our facility.",
   },
   {
-    icon: (
-      <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-      </svg>
-    ),
+    icon: GlobalIcon,
     title: "International Reach",
     description:
-      "We operate in Kenya, Tanzania, Mauritius, and the United Kingdom. We understand global commodity standards.",
+      "We operate seamlessly across Kenya, Tanzania, Mauritius, and the United Kingdom, strictly adhering to global commodity standards.",
   },
   {
-    icon: (
-      <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-    ),
+    icon: DeliveryTruck02Icon,
     title: "Full Chain Coverage",
     description:
-      "From farm gate to warehouse to destination — we handle every step in between.",
+      "From farm gate to warehouse to your final destination — we handle logistics, export documentation, and every step in between.",
   },
 ];
 
 export default function WhatSetsUsApart() {
   return (
-    <section className="py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="section-heading mb-14">What Sets Us Apart</h2>
+    <section className="bg-white py-24 lg:py-32">
+      <div className="mx-auto max-w-[90rem] px-6 lg:px-12">
+        <ScrollReveal animation="fade-up">
+          <div className="mb-20 text-center flex flex-col items-center">
+            <h2 className="mb-6 text-4xl font-black lowercase tracking-tight text-[#111] sm:text-5xl lg:text-6xl">
+              What Sets Us <span className="text-[#326949]">Apart</span>
+            </h2>
+            <p className="max-w-2xl text-lg font-medium text-gray-600">
+              We aren't just another supplier. We are an integrated logistics and sourcing powerhouse built on reliability.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="space-y-6">
-          {features.map((feature) => (
-            <article
-              key={feature.title}
-              className="flex flex-col gap-6 border border-light-grey bg-white p-8 sm:flex-row sm:items-start lg:p-10"
-            >
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-primary text-white">
-                {feature.icon}
-              </div>
-              <div>
-                <h3 className="mb-2 text-sm font-bold tracking-widest text-brand-black uppercase">
-                  {feature.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-secondary lg:text-base">
-                  {feature.description}
-                </p>
-              </div>
-            </article>
+        <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+          {features.map((feature, index) => (
+            <ScrollReveal key={feature.title} animation="fade-up" delay={index * 0.1}>
+              <article className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-[24px] border border-gray-100 bg-[#FAF9F6] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#37F713]/30 hover:shadow-xl sm:flex-row sm:items-start lg:p-10">
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-[#111] text-[#37F713] transition-transform duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(55,247,19,0.4)]">
+                  <feature.icon size={36} variant="solid" className="drop-shadow-[0_0_8px_rgba(55,247,19,0.8)]" />
+                </div>
+                <div>
+                  <h3 className="mb-3 text-xl font-black uppercase tracking-widest text-[#111]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-base font-medium leading-relaxed text-gray-600">
+                    {feature.description}
+                  </p>
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

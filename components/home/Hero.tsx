@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import { motion } from "framer-motion";
 
 const markets = [
   { code: "ke", name: "Kenya" },
@@ -43,59 +45,94 @@ export default function Hero() {
       ))}
       <div className="absolute inset-0 bg-black/40 z-[1]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 flex-1 flex flex-col justify-center">
-        <div className="flex flex-wrap items-center gap-3 mb-8 text-xs font-bold tracking-[0.2em] text-white/80 uppercase">
-          <span className="text-[#37F713] text-lg leading-none">&bull;</span>
-          <span>SOURCING</span>
-          <span className="text-[#37F713] opacity-60">-</span>
-          <span>SUPPLY</span>
-          <span className="text-[#37F713] opacity-60">-</span>
-          <span>LOGISTICS</span>
-          <span className="text-[#37F713] opacity-60">-</span>
-          <span>EXPORTS</span>
+      <div className="relative z-10 mx-auto w-full max-w-7xl flex-1 flex flex-col justify-center px-6 lg:px-8">
+        <ScrollReveal animation="fade-up" delay={0.2}>
+          <div className="md:pl-8 lg:pl-16">
+          <div className="mb-8 flex animate-pulse flex-wrap items-center gap-3 text-sm font-bold lowercase tracking-[0.2em] text-white/80">
+            <span className="text-[#37F713] text-lg leading-none">&bull;</span>
+            <span>sourcing</span>
+            <span className="text-[#37F713] opacity-60">-</span>
+            <span>supply</span>
+            <span className="text-[#37F713] opacity-60">-</span>
+            <span>logistics</span>
+            <span className="text-[#37F713] opacity-60">-</span>
+            <span>exports</span>
+          </div>
+
+          <motion.h1 
+            className="mb-8 max-w-4xl text-5xl leading-[1.1] font-bold tracking-tight text-white sm:text-6xl lg:text-[5rem]"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 1 },
+              visible: {
+                opacity: 1,
+                transition: { delay: 0.3, staggerChildren: 0.1 },
+              },
+            }}
+          >
+            <span className="inline-block">
+              {"Connecting global".split(" ").map((word, idx) => (
+                <motion.span key={idx} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-block mr-3 lg:mr-4">{word}</motion.span>
+              ))}
+            </span>
+            <br className="hidden sm:block" />
+            <span className="inline-block">
+              {"markets to Africa's finest".split(" ").map((word, idx) => (
+                <motion.span key={idx} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-block mr-3 lg:mr-4">{word}</motion.span>
+              ))}
+            </span>
+            <br className="hidden sm:block" />
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-block text-[#326949]">
+              grains!
+            </motion.span>
+          </motion.h1>
+
+          <p className="mb-12 max-w-2xl text-lg font-medium leading-relaxed text-white/90">
+            <strong className="font-black text-[#37F713] drop-shadow-[0_0_10px_rgba(55,247,19,0.4)]">SAF Agro</strong> <strong className="font-semibold text-white">Products</strong> is an international agro-commodity sourcing and
+            supply company — operating across Kenya, Tanzania, Mauritius, and the
+            United Kingdom.
+            <br />
+            <br />
+            <strong className="font-bold text-white">
+              We source, <span className="text-[#326949]">grade</span>, <span className="text-[#326949]">pack</span>, and <span className="text-[#326949]">deliver</span> at scale.
+            </strong>
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Link href="/contact" className="btn-primary group">
+              REQUEST A QUOTE 
+              <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+            </Link>
+            <Link href="/products" className="btn-outline">
+              VIEW OUR PRODUCTS
+            </Link>
+          </div>
         </div>
-
-        <h1 className="mb-8 max-w-4xl text-5xl leading-[1.1] font-bold tracking-tight text-white sm:text-6xl lg:text-[5rem]">
-          Connecting global <br className="hidden sm:block" />
-          markets to Africa&apos;s finest <br className="hidden sm:block" />
-          grains.
-        </h1>
-
-        <p className="mb-12 max-w-2xl text-lg leading-relaxed font-light text-white/90">
-          <strong className="font-semibold text-white">SAF Agro Products</strong> is an international agro-commodity sourcing and
-          supply company — operating across Kenya, Tanzania, Mauritius, and the
-          United Kingdom.
-          <br />
-          <br />
-          We source, grade, pack, and deliver at scale.
-        </p>
-
-        <div className="flex flex-wrap gap-4">
-          <Link href="/contact" className="btn-primary group">
-            REQUEST A QUOTE 
-            <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-          </Link>
-          <Link href="/products" className="btn-outline">
-            VIEW OUR PRODUCTS
-          </Link>
-        </div>
+        </ScrollReveal>
       </div>
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 lg:px-8 mt-16">
+        <ScrollReveal animation="fade-up" delay={0.4}>
+          <p className="mb-6 text-sm font-bold lowercase tracking-[0.2em] text-white/90 drop-shadow-md md:pl-8 lg:pl-16">
+            we are operational in .....
+          </p>
+        </ScrollReveal>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6">
-          {markets.map((m) => (
+          {markets.map((m, i) => (
+            <ScrollReveal key={m.name} animation="fade-up" delay={0.5 + i * 0.1}>
             <div
-              key={m.name}
-              className="flex flex-col items-center justify-center gap-3 rounded-xl bg-gradient-to-b from-black/20 to-black/80 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.4)] backdrop-blur-sm border border-white/10 transition-transform hover:-translate-y-1"
+              className="flex flex-col items-center justify-center gap-3 rounded-xl bg-black/60 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.6)] backdrop-blur-md border border-white/10 transition-all hover:-translate-y-1 hover:bg-black/80 hover:border-[#37F713]/30 hover:shadow-[0_8px_30px_rgba(55,247,19,0.3)]"
             >
               <span
                 className={`fi fi-${m.code} text-2xl sm:text-3xl rounded-sm shadow-sm`}
                 aria-hidden
               ></span>
-              <span className="text-sm font-bold tracking-widest text-white uppercase drop-shadow-md">
+              <span className="text-sm font-black tracking-widest text-white uppercase drop-shadow-md">
                 {m.name}
               </span>
             </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

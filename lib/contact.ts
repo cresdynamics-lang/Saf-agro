@@ -9,10 +9,10 @@ export const BUSINESS_HOURS = [
 ];
 
 export const MARKETS_SERVED = [
-  { flag: "🇰🇪", name: "Kenya" },
-  { flag: "🇹🇿", name: "Tanzania" },
-  { flag: "🇲🇺", name: "Mauritius" },
-  { flag: "🇬🇧", name: "UK" },
+  { flag: "🇰🇪", code: "ke", name: "Kenya" },
+  { flag: "🇹🇿", code: "tz", name: "Tanzania" },
+  { flag: "🇲🇺", code: "mu", name: "Mauritius" },
+  { flag: "🇬🇧", code: "gb", name: "UK" },
 ];
 
 export const PRODUCT_OPTIONS = [

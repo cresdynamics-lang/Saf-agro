@@ -1,13 +1,18 @@
+import ScrollReveal from "@/components/ui/ScrollReveal";
+
 export default function OurStory() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="section-heading mb-10">
-            From East Africa to the World.
-          </h2>
+        <div className="mx-auto max-w-4xl text-center">
+          <ScrollReveal animation="fade-up">
+            <h2 className="mb-8 text-4xl font-black lowercase tracking-tight text-[#111] sm:text-5xl lg:text-6xl">
+              From East Africa <br className="hidden sm:block" /> to the <span className="text-[#326949]">World.</span>
+            </h2>
+          </ScrollReveal>
 
-          <div className="space-y-6 text-base leading-relaxed text-secondary lg:text-lg">
+          <ScrollReveal animation="fade-up" delay={0.2}>
+            <div className="space-y-8 text-lg leading-relaxed text-gray-600 lg:text-xl font-medium">
             <p>
               SAF Agro Products (K) Ltd was founded with one clear mission: to
               become the most trusted sourcing and supply partner for
@@ -24,10 +29,11 @@ export default function OurStory() {
               Africa&apos;s most demanded commodities: maize, soya beans, green
               grams, pigeon peas, soya meal, and cow peas.
             </p>
-            <p className="text-lg font-semibold text-brand-black lg:text-xl">
-              We are not a broker. We are a supply chain partner.
+            <p className="text-2xl md:text-3xl font-black tracking-tight text-[#111] mt-12 p-8 border-y-2 border-[#37F713]/30 bg-[#FAF9F6]">
+              We are not a broker.<br className="hidden sm:block"/> We are a <span className="text-[#326949]">supply chain partner.</span>
             </p>
           </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

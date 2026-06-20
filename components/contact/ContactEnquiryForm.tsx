@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { ENQUIRY_EMAIL } from "@/lib/grade-specs";
 import { PRODUCT_OPTIONS, type ProductOption } from "@/lib/contact";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 type ContactEnquiryFormProps = {
   defaultProduct?: string;
@@ -62,6 +63,7 @@ export default function ContactEnquiryForm({
 }: ContactEnquiryFormProps) {
   const [form, setForm] = useState<FormData>(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     setForm((prev) => ({
@@ -75,272 +77,341 @@ export default function ContactEnquiryForm({
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleNext = () => setStep((s) => Math.min(s + 1, 3));
+  const handleBack = () => setStep((s) => Math.max(s - 1, 1));
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (step < 3) {
+      handleNext();
+      return;
+    }
 
-    const subject = `Product Enquiry — ${form.product} ${form.grade}`;
-    const body = [
-      "PRODUCT ENQUIRY FORM",
-      "─".repeat(40),
-      "",
-      `Full Name: ${form.fullName}`,
-      `Company / Organisation: ${form.company}`,
-      `Country: ${form.country}`,
-      `Email: ${form.email}`,
-      `Phone / WhatsApp: ${form.phone}`,
-      "",
-      `Product Required: ${form.product}`,
-      `Grade Required: ${form.grade}`,
-      `Quantity (MT): ${form.quantity}`,
-      `Packing: ${form.packing}`,
-      `Delivery Preference: ${form.delivery}`,
-      `Destination: ${form.destination}`,
-      "",
-      "Additional Notes:",
-      form.notes,
-    ].join("\n");
+    setIsSubmitting(true);
+    setError(null);
 
-    window.location.href = `mailto:${ENQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    try {
+      const { submitContactEnquiry } = await import("@/app/actions/contact");
+      const res = await submitContactEnquiry(form);
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        setError(res.error || "Failed to submit enquiry. Please try again.");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
-    "w-full border border-light-grey bg-white px-4 py-3 text-sm text-brand-black outline-none transition-colors focus:border-accent";
+    "w-full rounded-xl border border-[#326949]/30 bg-[#132A1C] px-5 py-4 text-sm font-bold text-white outline-none transition-all focus:border-[#37F713] focus:ring-1 focus:ring-[#37F713] focus:shadow-[0_0_15px_rgba(55,247,19,0.2)]";
+
+  const renderStepIndicator = () => (
+    <div className="flex items-center gap-2 mb-10">
+      {[1, 2, 3].map((s) => (
+        <div key={s} className="flex-1 flex items-center gap-2">
+          <div className={`h-2 rounded-full transition-all duration-500 w-full ${s <= step ? 'bg-[#37F713] shadow-[0_0_10px_rgba(55,247,19,0.5)]' : 'bg-[#132A1C]'}`} />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-light-grey bg-white p-8 shadow-sm lg:p-10"
+      className="flex flex-col h-full rounded-[24px] border-2 border-[#326949]/30 bg-[#0B150F] p-8 shadow-2xl lg:p-12 relative overflow-hidden"
     >
-      <h2 className="mb-2 text-lg font-bold tracking-widest text-brand-black uppercase">
-        Product Enquiry Form
-      </h2>
-      <hr className="mb-8 border-light-grey" />
+      {/* Subtle background glow */}
+      <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-[#37F713] opacity-[0.03] blur-[100px]"></div>
 
-      <div className="space-y-5">
-        <div>
-          <label htmlFor="fullName" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Full Name *
-          </label>
-          <input
-            id="fullName"
-            type="text"
-            required
-            value={form.fullName}
-            onChange={(e) => update("fullName", e.target.value)}
-            className={inputClass}
-          />
-        </div>
+      <div className="flex justify-between items-end mb-6">
+        <h2 className="text-2xl md:text-3xl font-black lowercase tracking-tight text-white">
+          {step === 1 && "Your Details"}
+          {step === 2 && "Requirements"}
+          {step === 3 && "Logistics"}
+        </h2>
+        <span className="text-sm font-black text-[#37F713] uppercase tracking-widest hidden sm:block">Step {step} of 3</span>
+      </div>
+      
+      {renderStepIndicator()}
 
-        <div>
-          <label htmlFor="company" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Company / Organisation
-          </label>
-          <input
-            id="company"
-            type="text"
-            value={form.company}
-            onChange={(e) => update("company", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="country" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Country *
-          </label>
-          <input
-            id="country"
-            type="text"
-            required
-            value={form.country}
-            onChange={(e) => update("country", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Email Address *
-          </label>
-          <input
-            id="email"
-            type="email"
-            required
-            value={form.email}
-            onChange={(e) => update("email", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Phone / WhatsApp *
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            required
-            value={form.phone}
-            onChange={(e) => update("phone", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-
-        <fieldset>
-          <legend className="mb-2 text-xs font-semibold text-brand-black uppercase">
-            Product Required *
-          </legend>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {PRODUCT_OPTIONS.map((product) => (
-              <label key={product} className="flex items-center gap-2 text-sm text-secondary">
-                <input
-                  type="radio"
-                  name="product"
-                  value={product}
-                  required
-                  checked={form.product === product}
-                  onChange={() => update("product", product)}
-                  className="accent-primary"
-                />
-                {product}
+      <div className="space-y-5 flex-1 min-h-[400px]">
+        {step === 1 && (
+          <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-500">
+            <div>
+              <label htmlFor="fullName" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Full Name *
               </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend className="mb-2 text-xs font-semibold text-brand-black uppercase">
-            Grade Required *
-          </legend>
-          <div className="flex flex-wrap gap-4">
-            {(["Grade 1", "Grade 2", "Both"] as const).map((grade) => (
-              <label key={grade} className="flex items-center gap-2 text-sm text-secondary">
-                <input
-                  type="radio"
-                  name="grade"
-                  value={grade}
-                  required
-                  checked={form.grade === grade}
-                  onChange={() => update("grade", grade)}
-                  className="accent-primary"
-                />
-                {grade}
+              <input
+                id="fullName"
+                type="text"
+                required
+                value={form.fullName}
+                onChange={(e) => update("fullName", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="company" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Company / Organisation
               </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <div>
-          <label htmlFor="quantity" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Quantity (MT) *
-          </label>
-          <input
-            id="quantity"
-            type="number"
-            min="0.1"
-            step="0.1"
-            required
-            value={form.quantity}
-            onChange={(e) => update("quantity", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-
-        <fieldset>
-          <legend className="mb-2 text-xs font-semibold text-brand-black uppercase">
-            Packing *
-          </legend>
-          <div className="flex flex-wrap gap-4">
-            {(["50KG", "90KG", "Both"] as const).map((pack) => (
-              <label key={pack} className="flex items-center gap-2 text-sm text-secondary">
-                <input
-                  type="radio"
-                  name="packing"
-                  value={pack}
-                  required
-                  checked={form.packing === pack}
-                  onChange={() => update("packing", pack)}
-                  className="accent-primary"
-                />
-                {pack === "Both" ? "Both" : `${pack} Bags`}
+              <input
+                id="company"
+                type="text"
+                value={form.company}
+                onChange={(e) => update("company", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="country" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Country *
               </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend className="mb-2 text-xs font-semibold text-brand-black uppercase">
-            Delivery Preference *
-          </legend>
-          <div className="space-y-2">
-            {(
-              [
-                ["Delivery", "Delivery to our premises"],
-                ["Warehouse Pickup", "Warehouse pickup (Nairobi)"],
-                ["Export", "Export / International freight"],
-              ] as const
-            ).map(([value, label]) => (
-              <label key={value} className="flex items-center gap-2 text-sm text-secondary">
-                <input
-                  type="radio"
-                  name="delivery"
-                  value={value}
-                  required
-                  checked={form.delivery === value}
-                  onChange={() => update("delivery", value)}
-                  className="accent-primary"
-                />
-                {label}
+              <input
+                id="country"
+                type="text"
+                required
+                value={form.country}
+                onChange={(e) => update("country", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Email Address *
               </label>
-            ))}
+              <input
+                id="email"
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => update("email", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Phone / WhatsApp *
+              </label>
+              <input
+                id="phone"
+                type="tel"
+                required
+                value={form.phone}
+                onChange={(e) => update("phone", e.target.value)}
+                className={inputClass}
+              />
+            </div>
           </div>
-        </fieldset>
+        )}
 
-        <div>
-          <label htmlFor="destination" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Destination *
-          </label>
-          <input
-            id="destination"
-            type="text"
-            required
-            value={form.destination}
-            onChange={(e) => update("destination", e.target.value)}
-            className={inputClass}
-          />
-        </div>
+        {step === 2 && (
+          <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-500">
+            <fieldset>
+              <legend className="mb-3 text-xs font-black tracking-widest text-[#326949] uppercase">
+                Product Required *
+              </legend>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {PRODUCT_OPTIONS.map((product) => (
+                  <label key={product} className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#326949]/30 bg-[#132A1C] p-4 text-sm font-bold text-white transition-all hover:border-[#37F713]/50 has-[:checked]:border-[#37F713] has-[:checked]:bg-[#37F713]/10">
+                    <input
+                      type="radio"
+                      name="product"
+                      value={product}
+                      required
+                      checked={form.product === product}
+                      onChange={() => update("product", product)}
+                      className="h-4 w-4 accent-[#37F713]"
+                    />
+                    {product}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-        <div>
-          <label htmlFor="notes" className="mb-1.5 block text-xs font-semibold text-brand-black uppercase">
-            Additional Notes
-          </label>
-          <textarea
-            id="notes"
-            rows={3}
-            value={form.notes}
-            onChange={(e) => update("notes", e.target.value)}
-            className={`${inputClass} resize-y`}
-          />
-        </div>
+            <fieldset>
+              <legend className="mb-3 text-xs font-black tracking-widest text-[#326949] uppercase">
+                Grade Required *
+              </legend>
+              <div className="flex flex-wrap gap-3">
+                {(["Grade 1", "Grade 2", "Both"] as const).map((grade) => (
+                  <label key={grade} className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#326949]/30 bg-[#132A1C] px-5 py-3 text-sm font-bold text-white transition-all hover:border-[#37F713]/50 has-[:checked]:border-[#37F713] has-[:checked]:bg-[#37F713]/10">
+                    <input
+                      type="radio"
+                      name="grade"
+                      value={grade}
+                      required
+                      checked={form.grade === grade}
+                      onChange={() => update("grade", grade)}
+                      className="h-4 w-4 accent-[#37F713]"
+                    />
+                    {grade}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div>
+              <label htmlFor="quantity" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Quantity (MT) *
+              </label>
+              <input
+                id="quantity"
+                type="number"
+                min="0.1"
+                step="0.1"
+                required
+                value={form.quantity}
+                onChange={(e) => update("quantity", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+
+            <fieldset>
+              <legend className="mb-3 text-xs font-black tracking-widest text-[#326949] uppercase">
+                Packing *
+              </legend>
+              <div className="flex flex-wrap gap-3">
+                {(["50KG", "90KG", "Both"] as const).map((pack) => (
+                  <label key={pack} className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#326949]/30 bg-[#132A1C] px-5 py-3 text-sm font-bold text-white transition-all hover:border-[#37F713]/50 has-[:checked]:border-[#37F713] has-[:checked]:bg-[#37F713]/10">
+                    <input
+                      type="radio"
+                      name="packing"
+                      value={pack}
+                      required
+                      checked={form.packing === pack}
+                      onChange={() => update("packing", pack)}
+                      className="h-4 w-4 accent-[#37F713]"
+                    />
+                    {pack === "Both" ? "Both" : `${pack} Bags`}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-500">
+            <fieldset>
+              <legend className="mb-3 text-xs font-black tracking-widest text-[#326949] uppercase">
+                Delivery Preference *
+              </legend>
+              <div className="space-y-3">
+                {(
+                  [
+                    ["Delivery", "Delivery to our premises"],
+                    ["Warehouse Pickup", "Warehouse pickup (Nairobi)"],
+                    ["Export", "Export / International freight"],
+                  ] as const
+                ).map(([value, label]) => (
+                  <label key={value} className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#326949]/30 bg-[#132A1C] p-4 text-sm font-bold text-white transition-all hover:border-[#37F713]/50 has-[:checked]:border-[#37F713] has-[:checked]:bg-[#37F713]/10">
+                    <input
+                      type="radio"
+                      name="delivery"
+                      value={value}
+                      required
+                      checked={form.delivery === value}
+                      onChange={() => update("delivery", value)}
+                      className="h-4 w-4 accent-[#37F713]"
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div>
+              <label htmlFor="destination" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Destination *
+              </label>
+              <input
+                id="destination"
+                type="text"
+                required
+                value={form.destination}
+                onChange={(e) => update("destination", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="notes" className="mb-2 block text-xs font-black tracking-widest text-[#326949] uppercase">
+                Additional Notes
+              </label>
+              <textarea
+                id="notes"
+                rows={4}
+                value={form.notes}
+                onChange={(e) => update("notes", e.target.value)}
+                className={`${inputClass} resize-y min-h-[120px]`}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
-      <button type="submit" className="btn-primary mt-8 w-full justify-center sm:w-auto">
-        Submit Enquiry →
-      </button>
+      <div className="mt-10 flex flex-col justify-end pt-6 border-t border-[#326949]/30">
+          {error && (
+            <div className="mb-6 rounded-xl bg-red-50 px-6 py-4 text-sm font-medium text-red-600 border border-red-200">
+              {error}
+            </div>
+          )}
 
-      <div className="mt-8 border-t border-light-grey pt-6 text-xs text-secondary">
-        <p>Form submits to: {ENQUIRY_EMAIL}</p>
-        {submitted ? (
-          <p className="mt-2 text-accent">
-            Your email client should open with your enquiry. We respond within 24
-            hours on business days.
-          </p>
-        ) : (
-          <p className="mt-2">
-            We respond within 24 hours on business days.
-          </p>
-        )}
+          {submitted ? (
+            <div className="flex flex-col items-center text-center animate-in zoom-in duration-500 py-12">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#37F713]/20 text-[#326949]">
+                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="mb-2 text-2xl font-black uppercase tracking-widest text-white">Enquiry Sent</h3>
+              <p className="text-sm font-medium text-gray-400 max-w-md">
+                Thank you. Your message has been sent directly to the SAF Agro Trading Floor. We will respond within 24 hours.
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col-reverse justify-between gap-4 sm:flex-row">
+              {step > 1 ? (
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="flex items-center justify-center gap-2 rounded-xl border border-[#326949]/50 px-8 py-4 text-sm font-bold uppercase tracking-widest text-gray-300 transition-all hover:bg-[#132A1C] hover:text-white"
+                >
+                  Back
+                </button>
+              ) : (
+                <div />
+              )}
+              
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="group flex items-center justify-center gap-3 rounded-xl bg-[#37F713] px-10 py-4 text-sm font-black uppercase tracking-widest text-black shadow-lg transition-all duration-300 hover:bg-[#326949] hover:text-white hover:shadow-[0_0_25px_rgba(55,247,19,0.3)] disabled:opacity-70 disabled:cursor-not-allowed sm:w-auto"
+              >
+                {step < 3 ? (
+                  <>Next Step <span className="transition-transform group-hover:translate-x-1">&rarr;</span></>
+                ) : (
+                  isSubmitting ? "Sending..." : "Submit Enquiry"
+                )}
+              </button>
+            </div>
+          )}
+
+        <div className="mt-6 text-center text-xs font-medium text-[#326949]">
+          <p>Form submits to: {ENQUIRY_EMAIL}</p>
+          {!submitted && (
+            <p className="mt-2">
+              We respond within 24 hours on business days.
+            </p>
+          )}
+        </div>
       </div>
     </form>
   );

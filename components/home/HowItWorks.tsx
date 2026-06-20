@@ -1,43 +1,131 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const steps = [
-  { num: "01", title: "Enquiry" },
-  { num: "02", title: "Sourcing & Grading" },
-  { num: "03", title: "Packing & Quality QC" },
-  { num: "04", title: "Delivery or Collection" },
+  {
+    badge: "START HERE",
+    title: "Enquiry",
+    desc: "Share your requirements with our team.",
+    num: "01",
+  },
+  {
+    badge: "STEP 2",
+    title: "Sourcing & Grading",
+    desc: "We locate and grade stock to spec.",
+    num: "02",
+  },
+  {
+    badge: "STEP 3",
+    title: "Packing & Quality QC",
+    desc: "Every order is packed and verified.",
+    num: "03",
+  },
+  {
+    badge: "FINAL",
+    title: "Delivery or Collection",
+    desc: "Choose your preferred fulfilment method.",
+    num: "04",
+  },
 ];
 
 export default function HowItWorks() {
-  return (
-    <section className="bg-near-black py-20 text-white lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <p className="section-label mb-3 text-white/50">How We Work</p>
-        <h2 className="mb-4 text-2xl font-bold tracking-wide uppercase sm:text-3xl">
-          A simple, reliable process — from enquiry to delivery.
-        </h2>
+  const [activeIndex, setActiveIndex] = useState(0);
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step, i) => (
-            <div key={step.num} className="relative">
-              {i < steps.length - 1 && (
-                <span
-                  className="absolute top-6 left-full hidden w-full text-center text-accent lg:block"
-                  aria-hidden
-                >
-                  →
-                </span>
-              )}
-              <p className="mb-3 text-3xl font-bold text-accent">{step.num}</p>
-              <p className="text-sm font-semibold tracking-wide uppercase">
-                {step.title}
-              </p>
-            </div>
-          ))}
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % steps.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="bg-[#FAF9F6] py-24 lg:py-32">
+      <div className="mx-auto max-w-[90rem] px-6 lg:px-12">
+        {/* Header Section */}
+        <div className="mb-16 text-center">
+          <h2 className="text-5xl font-black tracking-tight text-[#111] sm:text-6xl lg:text-7xl whitespace-nowrap">
+            From enquiry to <span className="text-[#326949]">delivery.</span>
+          </h2>
         </div>
 
-        <div className="mt-12">
-          <Link href="/how-we-work" className="link-arrow text-accent hover:text-white">
-            See The Full Process →
+        {/* Steps Grid */}
+        <div className="relative grid grid-cols-1 border border-gray-200 bg-white md:grid-cols-4 shadow-sm">
+          {steps.map((step, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <div
+                key={step.num}
+                className={`relative flex h-[320px] flex-col justify-between border-b border-gray-100 p-8 transition-all duration-500 ease-in-out md:border-b-0 md:border-r last:border-r-0 sm:p-10 ${
+                  isActive
+                    ? "z-10 scale-[1.02] bg-[#111513] text-white shadow-2xl"
+                    : "bg-white text-brand-black hover:bg-gray-50 cursor-pointer"
+                }`}
+                onMouseEnter={() => setActiveIndex(index)}
+              >
+                {/* Active arrow indicator pointing right */}
+                {isActive && index !== steps.length - 1 && (
+                  <div className="absolute -right-[20px] top-1/2 z-20 hidden -translate-y-1/2 border-b-[20px] border-l-[20px] border-t-[20px] border-b-transparent border-l-[#111513] border-t-transparent md:block" />
+                )}
+
+                <div className="relative z-10">
+                  {/* Badge */}
+                  <span
+                    className={`mb-6 inline-block px-3 py-1 text-xs font-bold uppercase tracking-widest ${
+                      isActive
+                        ? "bg-[#1B3B2B] text-[#37F713]"
+                        : "bg-[#EAEFEA] text-[#5A876A]"
+                    }`}
+                  >
+                    {step.badge}
+                  </span>
+
+                  {/* Title & Desc */}
+                  <h3
+                    className={`mb-4 text-3xl font-bold ${
+                      isActive ? "text-white" : "text-[#111]"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    className={`text-base leading-relaxed ${
+                      isActive ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
+
+                {/* Giant Background Number */}
+                <div
+                  className={`absolute bottom-4 right-6 text-7xl font-black transition-colors duration-500 ${
+                    isActive ? "text-[#172D21]" : "text-[#EFEFEF]"
+                  }`}
+                >
+                  {step.num}
+                </div>
+                
+                {/* Green top accent line for active card */}
+                {isActive && (
+                  <div className="absolute top-0 left-0 w-full h-1.5 bg-[#326949]" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* View Full Process Button */}
+        <div className="mt-16 flex justify-center">
+          <Link
+            href="/how-we-work"
+            className="group inline-flex items-center gap-3 rounded-[15px] bg-[#111] px-10 py-5 text-sm font-bold tracking-widest text-white uppercase transition-all duration-300 hover:bg-[#37F713] hover:text-[#111] hover:shadow-[0_0_20px_rgba(55,247,19,0.5)]"
+          >
+            SEE FULL PROCESS{" "}
+            <span className="text-lg leading-none transition-transform group-hover:translate-x-1">
+              &rarr;
+            </span>
           </Link>
         </div>
       </div>

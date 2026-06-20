@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Sun, Truck, Warehouse } from "lucide-react";
 

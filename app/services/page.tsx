@@ -3,6 +3,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
 import ServiceBlocks from "@/components/services/ServiceBlocks";
+import ServiceGuarantee from "@/components/services/ServiceGuarantee";
+import ServicesCta from "@/components/services/ServicesCta";
 
 export const metadata: Metadata = {
   title: "Services | SAF Agro Products (K) Ltd",
@@ -22,6 +24,8 @@ export default function ServicesPage() {
           imageAlt="Commodity logistics and supply chain"
         />
         <ServiceBlocks />
+        <ServiceGuarantee />
+        <ServicesCta />
       </main>
       <Footer />
     </>
